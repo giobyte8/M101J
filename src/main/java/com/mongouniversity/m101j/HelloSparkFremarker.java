@@ -6,7 +6,6 @@ import java.util.Map;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import spark.HaltException;
 import spark.Request;
 import spark.Response;
 import spark.Route;
