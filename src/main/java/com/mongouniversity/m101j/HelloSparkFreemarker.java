@@ -1,9 +1,5 @@
 package com.mongouniversity.m101j;
 
-import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
-
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import spark.Request;
@@ -11,20 +7,19 @@ import spark.Response;
 import spark.Route;
 import spark.Spark;
 
-public class HelloSparkFremarker {
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
+
+public class HelloSparkFreemarker {
 	
-	public static void main( String[] args )
-    {
+	public static void main( String[] args ) {
 		final Configuration configuration = new Configuration();
-		configuration.setClassForTemplateLoading(HelloFremarker.class, "/");
+		configuration.setClassForTemplateLoading(HelloSparkFreemarker.class, "/");
 		
-        Spark.get("/", new Route() 
-        { 
-        	public Object handle(Request request, Response response) throws Exception 
-			{
-				
-				try 
-				{
+        Spark.get("/", new Route() {
+        	public Object handle(Request request, Response response) throws Exception {
+				try {
 					Template template = configuration.getTemplate("hello.ftl");
 					StringWriter writer = new StringWriter();
 					
@@ -34,17 +29,11 @@ public class HelloSparkFremarker {
 					template.process(helloMap, writer);
 					return writer;
 					
-				} 
-				catch (Exception e) 
-				{ 
+				} catch (Exception e) {
 					e.printStackTrace();
 					return "Error 500";
 				}
-				
-				
 			}
-        		
         });
     }
-
 }

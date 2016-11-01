@@ -1,22 +1,18 @@
 package com.mongouniversity.m101j;
 
-import java.io.IOException;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import freemarker.core.ParseException;
-import freemarker.template.Configuration;
-import freemarker.template.MalformedTemplateNameException;
-import freemarker.template.Template;
-import freemarker.template.TemplateNotFoundException;
-
-public class HelloFremarker {
+public class HelloFreemarker {
 
 	public static void main(String[] args) {
 		
 		Configuration configuration = new Configuration();
-		configuration.setClassForTemplateLoading(HelloFremarker.class, "/");
+		configuration.setClassForTemplateLoading(HelloFreemarker.class, "/");
 		
 		try {
 			Template template = configuration.getTemplate("hello.ftl");
