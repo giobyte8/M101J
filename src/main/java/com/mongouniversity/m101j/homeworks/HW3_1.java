@@ -1,22 +1,19 @@
 package com.mongouniversity.m101j.homeworks;
 
-import java.util.List;
-
-import org.bson.Document;
-import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongouniversity.m101j.homeworks.tools.DBHelper;
+import org.bson.Document;
+
+import java.util.List;
 
 public class HW3_1 {
 	
 	public static void main(String[] args) {
-		
-		MongoClient dbClient = new MongoClient("172.17.0.1");
-		MongoDatabase dbase  = dbClient.getDatabase("school");
-		MongoCollection<Document> students = dbase.getCollection("students");
-		
+
+		MongoCollection<Document> students = DBHelper.getStudentsCollection();
+
 		// Iterate over all students and get theirs scores
 		MongoCursor<Document> cursor = students.find().iterator();
 		while(cursor.hasNext()) {
@@ -53,7 +50,6 @@ public class HW3_1 {
 		System.out.println("Lowest homework scores removed");
 		
 		cursor.close();
-		dbClient.close();
 	}
 
 }
