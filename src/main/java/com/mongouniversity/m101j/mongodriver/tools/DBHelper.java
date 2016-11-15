@@ -24,7 +24,15 @@ public class DBHelper {
         return database;
     }
 
+    private static MongoDatabase getDBInstance(String dbName) {
+        return new MongoClient(DB_HOST).getDatabase(dbName);
+    }
+
     public static MongoCollection<Document> getPeopleCollection() {
         return getDBInstance().getCollection("people");
+    }
+
+    public static MongoCollection<Document> getZipCodesCollection() {
+        return getDBInstance("locations").getCollection("zips");
     }
 }
